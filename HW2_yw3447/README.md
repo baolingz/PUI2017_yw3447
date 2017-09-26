@@ -2,16 +2,19 @@
 
 **Group**
 
-Yukun Wan - Complete all the assignments independently
+Yukun Wan - Complete all the assignments individually
 
 **Assignment 1 & 2**
 
-0. Import os, sys, json, request
-1. Connect the MTA API and get the key
+1. Request the MTA API KEY
 2. Apply API key, Busline in url and grab the JSON file
 3. Load the JSON file 
 4. Find the related field(Longitude & Latitude & Stopname & Stop status) in Json file
-5. Print the output (write the output to the .csv in Assignment 2)
+5. Print the output / write the output to the .csv 
+6. Add validation for KEY and BUSLINE:
+   When user enters invalid KEY or busline, error message will be displayed
+7. For assignment 2, valid the bus stop info:
+   If there is no data for Bus next stops, output "N/A"
 
 **Assignment 3**
 
@@ -19,3 +22,11 @@ Yukun Wan - Complete all the assignments independently
 2. Read CSV via Pandas
 3. Drop the columns and make sure that there are only two numberic columns
 4. Plot the data by pandas.plot()
+
+**Extra Credit**
+
+Steps are similar with assignment 3.
+Two additional steps:
+1. Change the format of date/time from string to datatime
+2. Remove the NaN data
+Also, use "rot" of plot() to ensure the x label readable

@@ -29,4 +29,4 @@ Steps are similar with assignment 3.
 Two additional steps:
 1. Change the format of date/time from string to datatime
 2. Remove the NaN data
-Also, use "rot" of plot() to ensure the x label readable
+3. Use "rot" of plot() to ensure the x label readable

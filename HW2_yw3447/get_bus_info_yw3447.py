@@ -14,14 +14,19 @@ url = "http://bustime.mta.info/api/siri/vehicle-monitoring.json?key=" + \
     sys.argv[1] + \
     "&VehicleMonitoringDetailLevel=calls&LineRef=" + sys.argv[2]
 
-response = urllib.urlopen(url)
+try:
+    response = urllib.urlopen(url)
+except:
+    print("Error: Invalid URL. Pleast input correct MTA API key.")
+    sys.exit()
+
 data = response.read().decode("utf-8")
 data = json.loads(data)
 
 try:
     ActiveBus = data['Siri']['ServiceDelivery']['VehicleMonitoringDelivery'][0]['VehicleActivity']
 except:
-    print(data['Siri']['ServiceDelivery']['VehicleMonitoringDelivery'][0]['ErrorCondition']['Description'])
+    print("Error: " + data['Siri']['ServiceDelivery']['VehicleMonitoringDelivery'][0]['ErrorCondition']['Description'])
     sys.exit()
 
 NumBus = len(ActiveBus)
@@ -37,7 +42,7 @@ try:
                 PresentableDistance = "N/A"
             else:
                 StopPointName = ActiveBus[i]['MonitoredVehicleJourney']['OnwardCalls']['OnwardCall'][0]['StopPointName']
-                PresentableDistance = ActiveBus[i]['MonitoredVehicleJourney']['OnwardCalls']['OnwardCall'][0]['Extensions']['Distances']['PresentableDistance']                
+                PresentableDistance = ActiveBus[i]['MonitoredVehicleJourney']['OnwardCalls']['OnwardCall'][0]['Extensions']['Distances']['PresentableDistance']
             fhandler.writelines(Latitude + ',' + Longitude + ',' + StopPointName + ',' + PresentableDistance + '\n')
 except IOError as ex:
     print("Error performing I/O operations on the file: ",ex)
